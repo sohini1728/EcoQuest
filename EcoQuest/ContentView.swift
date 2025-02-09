@@ -1,25 +1,11 @@
-//
-//  ContentView.swift
-//  EcoQuest
-//
-//  Created by Sohini Das on 2/8/25.
-//
-
-//
-//  ContentView.swift
-//  EcoQuest
-//
-//  Created by Sohini Das on 2/8/25.
-//
-
 import SwiftUI
 
 struct ContentView: View {
-    // State variables to store user input
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var showAlert: Bool = false
     @State private var alertMessage: String = ""
+    @State private var isLoggedIn: Bool = false // State to control navigation
 
     var body: some View {
         NavigationView {
@@ -54,7 +40,23 @@ struct ContentView: View {
                 }
 
                 Spacer()
+
+                // NavigationLink to MapsView
+                NavigationLink(
+                    destination: MapsView(),
+                    isActive: $isLoggedIn, // Activates when isLoggedIn is true
+                    label: { EmptyView() }
+                )
+                .hidden() // Hide the NavigationLink from view
+                
+                NavigationLink(
+                    destination: ProfilePage(),
+                    isActive: $isLoggedIn, // Activates when isLoggedIn is true
+                    label: { EmptyView() }
+                )
+                .hidden() // Hide the NavigationLink from view
             }
+            
             .padding()
             .alert(isPresented: $showAlert) {
                 Alert(title: Text("Login Status"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
@@ -68,12 +70,13 @@ struct ContentView: View {
         // Mock login validation
         if email.isEmpty || password.isEmpty {
             alertMessage = "Please fill in both fields."
+            showAlert = true
         } else if email == "test@example.com" && password == "password123" {
-            alertMessage = "Login successful!"
+            isLoggedIn = true // Trigger navigation
         } else {
             alertMessage = "Invalid email or password."
+            showAlert = true
         }
-        showAlert = true
     }
 }
 
