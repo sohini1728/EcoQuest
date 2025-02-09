@@ -1,68 +1,37 @@
-//
-//  ProfilePage.swift
-//  EcoQuest
-//
-//  Created by Sohini Das on 2/8/25.
-//
-import Foundation
 import SwiftUI
 
 struct ProfilePage: View {
     @State private var showSidebar = false // State to toggle sidebar
+    @Environment(\.presentationMode) var presentationMode // For navigating back
 
     var body: some View {
         ZStack {
-            // Main Profile Content
-            VStack(spacing: 20) {
-                // Profile Image
-                Image(systemName: "person.crop.circle.fill")
+            // Background Image
+            GeometryReader { geometry in
+                Image("profile") // Replace "profile" with your actual asset name
                     .resizable()
-                    .frame(width: 150, height: 150)
-                    .foregroundColor(.blue)
-                    .padding(.top, 40)
-
-                // Username
-                Text("Your Name")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-
-                // Level Info
-                Text("Level: 1")
-                    .font(.headline)
-                    .foregroundColor(.gray)
-
-                Divider()
-                    .padding(.vertical, 20)
-
-                // Rewards Section
-                VStack(alignment: .leading, spacing: 10) {
-                    Text("Rewards")
-                        .font(.title2)
-                        .fontWeight(.bold)
-
-                    // Example Rewards List
-                    VStack(alignment: .leading, spacing: 5) {
-                        HStack {
-                            Image(systemName: "star.fill")
-                                .foregroundColor(.yellow)
-                            Text("10 Points - Completed First Quest")
-                        }
-                        HStack {
-                            Image(systemName: "star.fill")
-                                .foregroundColor(.yellow)
-                            Text("50 Points - Reached Level 2")
-                        }
-                    }
-                }
-                .padding(.horizontal)
-
-                Spacer()
+                    .scaledToFill()
+                    .frame(width: geometry.size.width, height: geometry.size.height)
+                    .clipped()
             }
-            .navigationTitle("Profile")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                // Sidebar Toggle Button
-                ToolbarItem(placement: .navigationBarTrailing) {
+            .ignoresSafeArea()
+
+            // Top Navigation
+            VStack {
+                HStack {
+                    // Back Button
+                    Button(action: {
+                        presentationMode.wrappedValue.dismiss()
+                    }) {
+                        Image(systemName: "arrowshape.turn.up.left.fill")
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                            .foregroundColor(.black)
+                    }
+
+                    Spacer()
+
+                    // Sidebar Toggle Button
                     Button(action: {
                         withAnimation {
                             showSidebar.toggle()
@@ -70,8 +39,12 @@ struct ProfilePage: View {
                     }) {
                         Image(systemName: "line.horizontal.3")
                             .imageScale(.large)
+                            .foregroundColor(.black)
                     }
                 }
+                .padding(.horizontal)
+                .padding(.top, 20) // Adjust for safe area padding
+                Spacer()
             }
 
             // Sidebar Menu (Right Side)
@@ -80,4 +53,8 @@ struct ProfilePage: View {
             }
         }
     }
+}
+
+#Preview {
+    ProfilePage()
 }
