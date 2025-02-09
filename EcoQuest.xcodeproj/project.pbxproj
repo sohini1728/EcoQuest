@@ -29,9 +29,50 @@
 		D9AD55E92D57F08000827B73 /* EcoQuestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EcoQuestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		D989F2142D583559004AB41E /* Exceptions for "EcoQuest" folder in "EcoQuest" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Assets.xcassets,
+				ContentView.swift,
+				EcoQuestApp.swift,
+				homeScreen.png,
+				Item.swift,
+				loginScreen.png,
+				"Preview Content/Maps.swift",
+				"Preview Content/Preview Assets.xcassets",
+				"Preview Content/ProfilePage.swift",
+				"Preview Content/Rewards.swift",
+				"Preview Content/SidebarMenu.swift",
+			);
+			target = D9AD55CB2D57F07F00827B73 /* EcoQuest */;
+		};
+		D989F2152D583559004AB41E /* Exceptions for "EcoQuest" folder in "EcoQuestUITests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Assets.xcassets,
+				ContentView.swift,
+				EcoQuestApp.swift,
+				homeScreen.png,
+				Item.swift,
+				loginScreen.png,
+				"Preview Content/Maps.swift",
+				"Preview Content/Preview Assets.xcassets",
+				"Preview Content/ProfilePage.swift",
+				"Preview Content/Rewards.swift",
+				"Preview Content/SidebarMenu.swift",
+			);
+			target = D9AD55E82D57F08000827B73 /* EcoQuestUITests */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		D9AD55CE2D57F07F00827B73 /* EcoQuest */ = {
+		D989F2092D583559004AB41E /* EcoQuest */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				D989F2142D583559004AB41E /* Exceptions for "EcoQuest" folder in "EcoQuest" target */,
+				D989F2152D583559004AB41E /* Exceptions for "EcoQuest" folder in "EcoQuestUITests" target */,
+			);
 			path = EcoQuest;
 			sourceTree = "<group>";
 		};
@@ -75,7 +116,7 @@
 		D9AD55C32D57F07F00827B73 = {
 			isa = PBXGroup;
 			children = (
-				D9AD55CE2D57F07F00827B73 /* EcoQuest */,
+				D989F2092D583559004AB41E /* EcoQuest */,
 				D9AD55E22D57F08000827B73 /* EcoQuestTests */,
 				D9AD55EC2D57F08000827B73 /* EcoQuestUITests */,
 				D9AD55CD2D57F07F00827B73 /* Products */,
@@ -106,9 +147,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				D9AD55CE2D57F07F00827B73 /* EcoQuest */,
 			);
 			name = EcoQuest;
 			packageProductDependencies = (
@@ -154,6 +192,7 @@
 				D9AD55EB2D57F08000827B73 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
+				D989F2092D583559004AB41E /* EcoQuest */,
 				D9AD55EC2D57F08000827B73 /* EcoQuestUITests */,
 			);
 			name = EcoQuestUITests;

@@ -9,55 +9,68 @@ struct ContentView: View {
 
     var body: some View {
         NavigationView {
-            VStack(spacing: 20) {
-                // App Title
-                Text("EcoQuest Login")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .padding(.bottom, 40)
-
-                // Email TextField
-                TextField("Email", text: $email)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .autocapitalization(.none)
-                    .keyboardType(.emailAddress)
-                    .padding(.horizontal)
-
-                // Password SecureField
-                SecureField("Password", text: $password)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding(.horizontal)
-
-                // Login Button
-                Button(action: handleLogin) {
-                    Text("Log In")
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .foregroundColor(.white)
-                        .background(Color.blue)
-                        .cornerRadius(10)
-                        .padding(.horizontal)
+            ZStack {
+                // Background Image
+                GeometryReader { geometry in
+                    Image("homeScreen") // Replace "homeScreen" with the name of your image asset
+                        .resizable()
+                        .scaledToFill() // Ensures the image fills its container
+                        .frame(width: geometry.size.width, height: geometry.size.height) // Makes the image fill the screen
+                        .clipped() // Ensures no overflow
                 }
+                .ignoresSafeArea() // Ensures it fills the entire screen
 
-                Spacer()
+                // Foreground Content
+                VStack(spacing: 20) {
+                    // App Title
+                    Text("EcoQuest Login")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .foregroundColor(.white) // Ensure readability
+                        .padding(.bottom, 40)
 
-                // NavigationLink to MapsView
-                NavigationLink(
-                    destination: MapsView(),
-                    isActive: $isLoggedIn, // Activates when isLoggedIn is true
-                    label: { EmptyView() }
-                )
-                .hidden() // Hide the NavigationLink from view
-                
-                NavigationLink(
-                    destination: ProfilePage(),
-                    isActive: $isLoggedIn, // Activates when isLoggedIn is true
-                    label: { EmptyView() }
-                )
-                .hidden() // Hide the NavigationLink from view
+                    // Email TextField
+                    TextField("Email", text: $email)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .autocapitalization(.none)
+                        .keyboardType(.emailAddress)
+                        .padding(.horizontal)
+
+                    // Password SecureField
+                    SecureField("Password", text: $password)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding(.horizontal)
+
+                    // Login Button
+                    Button(action: handleLogin) {
+                        Text("Log In")
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .foregroundColor(.white)
+                            .background(Color.blue)
+                            .cornerRadius(10)
+                            .padding(.horizontal)
+                    }
+
+                    Spacer()
+
+                    // NavigationLink to MapsView
+                    NavigationLink(
+                        destination: MapsView(),
+                        isActive: $isLoggedIn, // Activates when isLoggedIn is true
+                        label: { EmptyView() }
+                    )
+                    .hidden() // Hide the NavigationLink from view
+
+                    NavigationLink(
+                        destination: ProfilePage(),
+                        isActive: $isLoggedIn, // Activates when isLoggedIn is true
+                        label: { EmptyView() }
+                    )
+                    .hidden() // Hide the NavigationLink from view
+                }
+                .padding()
             }
-            
-            .padding()
             .alert(isPresented: $showAlert) {
                 Alert(title: Text("Login Status"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
             }
